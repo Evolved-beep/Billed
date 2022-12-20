@@ -18,6 +18,16 @@ export default class NewBill {
   handleChangeFile = e => {
     e.preventDefault()
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
+    let fileAccepted =  file.type.includes("image/png") ||
+                        file.type.includes("image.jpeg") ||
+                        file.type.includes("image/jpg")
+    const button = document.querySelector("#btn-send-bill")
+    if(fileAccepted){
+      button.disabled = false
+    } else {
+      alert("Veuillez choisir un format PNG, JPEG ou JPG");
+      return button.disabled = true
+    } 
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length-1]
     const formData = new FormData()
@@ -42,7 +52,7 @@ export default class NewBill {
   }
   handleSubmit = e => {
     e.preventDefault()
-    console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
+    console.log(e.target.querySelector(`input[data-testid="datepicker"]`).value, e.target.querySelector(`input[data-testid="datepicker"]`).value)
     const email = JSON.parse(localStorage.getItem("user")).email
     const bill = {
       email,
@@ -62,6 +72,7 @@ export default class NewBill {
   }
 
   // not need to cover this function by tests
+  /* istanbul ignore next */
   updateBill = (bill) => {
     if (this.store) {
       this.store
@@ -72,5 +83,5 @@ export default class NewBill {
       })
       .catch(error => console.error(error))
     }
-  }
+  } 
 }
