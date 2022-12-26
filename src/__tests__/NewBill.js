@@ -74,7 +74,6 @@ describe("Given I am connected as an employee", () => {
       const handleFile = jest.fn(newBill.handleChangeFile)
       const dataValue = {
         name: 'Achat de bien',
-       /*  date: "2021/04/25", */
         amount : 130,
         vat: 40, 
         pct: 20,
@@ -84,10 +83,6 @@ describe("Given I am connected as an employee", () => {
       const expenseName = screen.getByTestId("expense-name")
       fireEvent.change(expenseName, {target: { value: dataValue.name}})
       expect(expenseName.value).toBe(dataValue.name)
-
-      /* const expenseDate = screen.getByTestId("datepicker")
-      fireEvent.change(expenseDate, {target: {value:dataValue.date}})
-      expect(expenseDate.value).toBe(dataValue.date) */
 
       const expenseAmount = screen.getByTestId("amount")
       fireEvent.change(expenseAmount, {target: {value: dataValue.amount}})
@@ -135,9 +130,9 @@ describe("Given I am connected as an employee", () => {
       })
     })
   })
-  describe("test", () => {
-  describe("When test", () =>{
-    test("test",async() => {
+  describe("Given when I want to send a new bills ", () => {
+  describe("When I enter bills's data", () =>{
+    test("Then it should post the new bills",async() => {
       const newBill = { "id": "47qAXb6fIm2zOKkLzMro",
       "vat": "80",
       "fileUrl": "https://test.storage.tld/v0/b/billable-677b6.a…f-1.jpg?alt=media&token=c1640e12-a24b-4b11-ae52-529112e9602a",

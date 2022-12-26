@@ -34,9 +34,9 @@ jest.mock("../app/store", () => mockStore);
     })
     test("Then bills should be ordered from earliest to latest", () => {
       document.body.innerHTML = BillsUI({ data: bills })
-      const dates = bills.map((doc) => new Date(doc.date).getTime()).sort((a,b) => a < b)
+      const dates = bills.map((doc) => new Date(doc.date).getTime()).sort((a,b) => b - a)
       console.log(dates)
-      const antiChrono = (a, b) => ((a < b))
+      const antiChrono = (a, b) => ((b - a))
       const datesSorted = [...dates].sort(antiChrono)
       expect(dates).toEqual(datesSorted)
     })
