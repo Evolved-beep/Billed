@@ -57,7 +57,6 @@ export default class {
           }
         })
         .sort(function (a,b){
-          console.log(a.dateToSort)
           return new Date(b.dateToSort).getTime() - new Date(a.dateToSort).getTime()
         })
         console.log('length', bills.length)
